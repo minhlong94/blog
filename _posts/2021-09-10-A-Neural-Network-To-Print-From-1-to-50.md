@@ -11,7 +11,7 @@ how to print numbers from 1 to 50 in python?
 ```
 Little did I know, I was about to engage in one of the funniest conversation.
 # Pure Python approach
-```
+```python
 for i in range(50):
     print(i)
 ```
@@ -309,5 +309,5 @@ for thread in threads:
 <]>.[-]]<<++++++[-<++++++++>]<.[-]<<[-<+>]
 ```
 
-# Conclusion
-What do you want me to conclude anyway? Thanks everyone who participated and enjoyed in this conversation!
+# Final take
+Thanks everyone who participated and enjoyed in this conversation!
