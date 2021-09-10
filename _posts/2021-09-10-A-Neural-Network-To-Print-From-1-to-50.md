@@ -1,17 +1,16 @@
 ---
 toc: true
 layout: post
-description: A minimal example of using markdown with fastpages.
+description: Because why not?
 categories: [shitpost]
 title: A Neural Network to print from 1 to 50
 ---
-# A Neural Network to print from 1 to 50
 Recently, a user named `logo` asked a question on the [RL Discord](https://discord.com/invite/xhfNqQv) server:
 ```
 how to print numbers from 1 to 50 in python?
 ```
 Little did I know, I was about to engage in one of the funniest conversation.
-## Pure Python approach
+# Pure Python approach
 ```
 for i in range(50):
     print(i)
@@ -84,7 +83,7 @@ def print50():
 
 print50()
 ```
-- by OrganicPitaChips.
+by OrganicPitaChips.
 
 "I feel a strong yin yang struggle right now between my shitposting nature and the whole "admin" thing" - Ariel.
 
@@ -107,13 +106,14 @@ def print50():
 
 print50()
 ```
-- hackeronsteriods.
+by hackeronsteriods.
 
 
 Yeah this is from [this link](https://github.com/EnterpriseQualityCoding/FizzBuzzEnterpriseEdition/tree/uinverse/src/main/java/com/seriouscompany/business/java/fizzbuzz/packagenamingpackage/impl/factories)
 
-## Neural Network to print from 1 to 50
+# Neural Network to print from 1 to 50
 "I like how nobody actually suggested training a neural network" - Ariel
+
 "Challenge accepted" - James
 ```python
 import tensorflow as tf
@@ -175,9 +175,10 @@ if __name__ == "__main__":
 ```
 
 "Please add TPU support I need this to support big data".
-"100k epochs ensures the right output".
-"When I run it locally I usually get 1-50, and somtimes 1-51. Dat bias term learning is apparently rough".
 
+"100k epochs ensures the right output".
+
+"When I run it locally I usually get 1-50, and somtimes 1-51. Dat bias term learning is apparently rough".
 
 "but what if I want to use Reinf Learning, we would surely need a PrintGymEnv"?
 
@@ -218,7 +219,7 @@ class PrintEnv(gym.Env):
     def render(self, mode="human"):
         print(self.counter)
 ```
-- Ariel.
+by Ariel.
 
 I think we need a PyTorch version, no?
 ```python
@@ -278,7 +279,7 @@ train(layer)
 result = rollout(layer, 1.)
 print(result)
 ```
-- Ariel
+also by Ariel
 
 ## State-of-the-art algorithm to print from 1 to 50
 The council consists of Ariel and me.
@@ -307,3 +308,6 @@ for thread in threads:
 <+>]>+>>]<<<<<]>[-]>>[>++++++[-<++++++++>]<.<<+>+>[-]]<[<[->-<]++++++[->++++++++
 <]>.[-]]<<++++++[-<++++++++>]<.[-]<<[-<+>]
 ```
+
+# Conclusion
+What do you want me to conclude anyway? Thanks everyone who participated and enjoyed in this conversation!
