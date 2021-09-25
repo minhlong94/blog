@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Action Space Shaping in Deep RL | fastpages</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Action Space Shaping in Deep RL" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="How should you shape the actions? (2, 3), (3, 2) or (6,)?" />
+<meta property="og:description" content="How should you shape the actions? (2, 3), (3, 2) or (6,)?" />
+<link rel="canonical" href="https://minhlong94.github.io/blog/drl/2021/09/25/Action-space-shaping-in-Deep-Reinforcement-Learning.html" />
+<meta property="og:url" content="https://minhlong94.github.io/blog/drl/2021/09/25/Action-space-shaping-in-Deep-Reinforcement-Learning.html" />
+<meta property="og:site_name" content="fastpages" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-09-25T00:00:00-05:00" />
+<script type="application/ld+json">
+{"datePublished":"2021-09-25T00:00:00-05:00","url":"https://minhlong94.github.io/blog/drl/2021/09/25/Action-space-shaping-in-Deep-Reinforcement-Learning.html","@type":"BlogPosting","dateModified":"2021-09-25T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://minhlong94.github.io/blog/drl/2021/09/25/Action-space-shaping-in-Deep-Reinforcement-Learning.html"},"headline":"Action Space Shaping in Deep RL","description":"How should you shape the actions? (2, 3), (3, 2) or (6,)?","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://minhlong94.github.io/blog/feed.xml" title="fastpages" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">fastpages</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About Me</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Action Space Shaping in Deep RL</h1><p class="page-description">How should you shape the actions? (2, 3), (3, 2) or (6,)?</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-09-25T00:00:00-05:00" itemprop="datePublished">
+        Sep 25, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/blog/categories/#DRL">DRL</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#reference">Reference</a></li>
+<li class="toc-entry toc-h1"><a href="#introduction">Introduction</a></li>
+<li class="toc-entry toc-h1"><a href="#action-space-shaping">Action space shaping</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#types-of-action-spaces">Types of action spaces</a></li>
+<li class="toc-entry toc-h2"><a href="#action-space-shaping-in-video-games">Action space shaping in video games</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#action-spaces-of-other-games">Action spaces of other games</a></li>
+<li class="toc-entry toc-h1"><a href="#experiments">Experiments</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#get-to-goal">Get-To-Goal</a></li>
+<li class="toc-entry toc-h2"><a href="#atari-games">Atari games</a></li>
+<li class="toc-entry toc-h2"><a href="#vizdoom">VizDoom</a></li>
+<li class="toc-entry toc-h2"><a href="#obstacle-tower">Obstacle Tower</a></li>
+<li class="toc-entry toc-h2"><a href="#starcraft-ii">Starcraft II</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#conclusion">Conclusion</a></li>
+<li class="toc-entry toc-h1"><a href="#acknowledgements">Acknowledgements</a></li>
+</ul><p>This is a presentation of the paper <strong>“Action space shaping in Deep Reinforcement Learning”, by Anssi Kanervisto et al., 2020</strong>, in IEEE Conference on Games 2020.</p>
+
+<p>Author: Long M. Luu. Contact: minhlong9413@gmail.com or AerysS#5558.</p>
+
+<h1 id="reference">
+<a class="anchor" href="#reference" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reference</h1>
+
+<p><a href="https://arxiv.org/abs/2004.00980">Action Space Shaping in Deep Reinforcement Learning</a></p>
+
+<h1 id="introduction">
+<a class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h1>
+
+<p>Take a game that uses keyboard and mouse:</p>
+
+<ul>
+  <li>Too many keys</li>
+  <li>Mouse is continuous</li>
+</ul>
+
+<p>Probably hard for human to learn. Should we remove keys? If we remove keys so that it is still playable, <strong>should we also remove unnecessary actions</strong>?</p>
+
+<p><img src="Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled.png" alt="Untitled"></p>
+
+<p>The question: do these transformations support the training of RL agents?</p>
+
+<p>Environments in this paper: toy environment, Atari, VizDoom, Starcraft II and Obstacle Tower.</p>
+
+<p><img src="https://1.bp.blogspot.com/-zg-NUE2A7m4/YC6kZqA17EI/AAAAAAAAHL4/XGyOYcW-BzsZ3pRv88bu9SrM6_hixaVywCLcBGAsYHQ/s704/image6.gif" alt="https://1.bp.blogspot.com/-zg-NUE2A7m4/YC6kZqA17EI/AAAAAAAAHL4/XGyOYcW-BzsZ3pRv88bu9SrM6_hixaVywCLcBGAsYHQ/s704/image6.gif"></p>
+
+<p><img src="https://raw.githubusercontent.com/glample/Arnold/master/docs/example.gif" alt="https://raw.githubusercontent.com/glample/Arnold/master/docs/example.gif"></p>
+
+<p><img src="https://techcrunch.com/wp-content/uploads/2019/01/motionalpha.gif" alt="https://techcrunch.com/wp-content/uploads/2019/01/motionalpha.gif"></p>
+
+<p>![https://miro.medium.com/max/1000/1<em>zkH1_KoHxQwr25thSJFUEQ.gif](https://miro.medium.com/max/1000/1</em>zkH1_KoHxQwr25thSJFUEQ.gif)</p>
+
+<h1 id="action-space-shaping">
+<a class="anchor" href="#action-space-shaping" aria-hidden="true"><span class="octicon octicon-link"></span></a>Action space shaping</h1>
+
+<h2 id="types-of-action-spaces">
+<a class="anchor" href="#types-of-action-spaces" aria-hidden="true"><span class="octicon octicon-link"></span></a>Types of action spaces</h2>
+
+<p>There are three common types of actions, established by OpenAI Gym:</p>
+
+<ul>
+  <li>
+<code class="language-plaintext highlighter-rouge">Discrete</code> . Each action is an integer $a \in {0, 1, …, N}$ where $n \in \mathbb{N}$ represents the number of possible actions.</li>
+</ul>
+
+<p><img src="Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%201.png" alt="Untitled"></p>
+
+<ul>
+  <li>
+<code class="language-plaintext highlighter-rouge">MultiDiscrete</code> . An extension of <code class="language-plaintext highlighter-rouge">Discrete</code>. Action is a vector of individual discrete actions $a_i \in {0, 1, …, N_i}$, each with possibly different number of possibilities $N_i$. For example, a keyboard is a large <code class="language-plaintext highlighter-rouge">MultiDiscrete</code> space.</li>
+</ul>
+
+<p><img src="Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%202.png" alt="Untitled"></p>
+
+<ul>
+  <li>
+<code class="language-plaintext highlighter-rouge">Continuous</code>. Action $a \in \mathbb{R}$ is a real number/vector.</li>
+</ul>
+
+<p><img src="Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%203.png" alt="Untitled"></p>
+
+<p>A set of keyboard buttons and mouse control can be represented as a combination of <code class="language-plaintext highlighter-rouge">MultiDiscrete</code> and <code class="language-plaintext highlighter-rouge">Continuous</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">MultiDiscrete</code> are often treated as independent <code class="language-plaintext highlighter-rouge">Discrete</code> decisions. Support for <code class="language-plaintext highlighter-rouge">Continuous</code> is often <strong>harder to implement</strong> correctly than for <code class="language-plaintext highlighter-rouge">Discrete</code> space.</p>
+
+<h2 id="action-space-shaping-in-video-games">
+<a class="anchor" href="#action-space-shaping-in-video-games" aria-hidden="true"><span class="octicon octicon-link"></span></a>Action space shaping in video games</h2>
+
+<p>There are three major categories of action space transformation:</p>
+
+<ul>
+  <li>
+<code class="language-plaintext highlighter-rouge">RA</code>: Remove actions. For example, “Sneak” in Minecraft is not crucial for the game progress ⇒ often removed. <code class="language-plaintext highlighter-rouge">RA</code> <strong>helps with exploration</strong> since there are less actions to try. However, this <strong>requires domain knowledge</strong>, and <strong>may restrict agent’s capabilities.</strong>
+</li>
+</ul>
+
+<p><img src="Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%204.png" alt="Untitled"></p>
+
+<ul>
+  <li>
+<code class="language-plaintext highlighter-rouge">DC</code>: Discretize continuous actions. Mouse movement or camera turning speed are often discretized by splitting them into a set of bins, or defining as discrete choices: negative, zero, positive. <strong>This turning rate is a hyperparameter</strong>. If the rate is too high, actions are not fine-grained, so the agents may have difficulties in aiming at a specific spot.</li>
+</ul>
+
+<p><img src="Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%205.png" alt="Untitled"></p>
+
+<ul>
+  <li>
+<code class="language-plaintext highlighter-rouge">CMD</code> : Convert <code class="language-plaintext highlighter-rouge">MultiDiscrete</code> to <code class="language-plaintext highlighter-rouge">Discrete</code>. Assumption: it is easier to learn a single large policy than multiple small policies. For example Q-Learning only works for <code class="language-plaintext highlighter-rouge">Discrete</code> actions.</li>
+</ul>
+
+<p><img src="Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%206.png" alt="Untitled"></p>
+
+<h1 id="action-spaces-of-other-games">
+<a class="anchor" href="#action-spaces-of-other-games" aria-hidden="true"><span class="octicon octicon-link"></span></a>Action spaces of other games</h1>
+
+<p><img src="Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%207.png" alt="Untitled"></p>
+
+<h1 id="experiments">
+<a class="anchor" href="#experiments" aria-hidden="true"><span class="octicon octicon-link"></span></a>Experiments</h1>
+
+<p>Environments: Atari, VizDoom, Starcraft II, Obstacle Tower challenge.</p>
+
+<p>Algorithm: PPO, IMPALA</p>
+
+<p>Libraries: stable-baselines, rllib.</p>
+
+<p>8 parallel environments.</p>
+
+<h2 id="get-to-goal">
+<a class="anchor" href="#get-to-goal" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get-To-Goal</h2>
+
+<p>A simple reach-the-goal env: player and goal start at a random environment. Player tries to reach the goal (reward 1) or when env times out (reward 0). Agent receives a 2D vector pointing towards the goal, and the rotating angle $(cos(\phi), sin(\phi))$ tuple where $\phi \in [0, 2\pi]$. Goal: test <code class="language-plaintext highlighter-rouge">DC</code> by using discrete and continuous variants of the action space:</p>
+
+<ul>
+  <li>
+<code class="language-plaintext highlighter-rouge">MultiDiscrete</code>: four buttons <em>Up, Down, Left, Right</em>.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">Discrete</code>: flatten version of above, but only <em>one</em> button at a time, i.e. no diagonal movements.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">Continuous</code>: player specifies the exact direction of the next move with a continuous value with 0 representing straight up, 90 straight right and 180 straight down.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">Tank, Discrete/MultiDiscrete</code>: player has a heading $\phi$ and it can choose to increase/decrease it (turn left/right) and/or to move forward/backward towards the heading. For tank-like controls, player must stop completely to turn.</li>
+</ul>
+
+<p>Authors also add <strong>bogus</strong> action (actions that do nothing), and <strong>backward</strong> and <strong>strafe</strong> actions.</p>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Circlestrafing_animation.gif/250px-Circlestrafing_animation.gif" alt="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Circlestrafing_animation.gif/250px-Circlestrafing_animation.gif"></p>
+
+<p>Strafe action. Camera of blue is locked towards red.</p>
+
+<p>To study <code class="language-plaintext highlighter-rouge">RA</code> and <code class="language-plaintext highlighter-rouge">CMD</code>, the authors add and/or remove additional actions.</p>
+
+<p><img src="Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%208.png" alt="Untitled"></p>
+
+<p><img src="Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%209.png" alt="Untitled"></p>
+
+<p>Figure (left): Tank-like control is slower than non-tank. <code class="language-plaintext highlighter-rouge">Continuous</code> is <strong>slowest</strong>. With rllib, <strong>observed similar results</strong>, except <code class="language-plaintext highlighter-rouge">Continuous</code> learned faster than tank-like ⇒ <code class="language-plaintext highlighter-rouge">Continuous</code> are <strong>sensitive</strong> to the implementation.</p>
+
+<p>Figure (right) with and without additional actions ⇒ Agent <strong>learns slower the more actions they have</strong> (<code class="language-plaintext highlighter-rouge">RA</code>).</p>
+
+<p><img src="Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2010.png" alt="Untitled"></p>
+
+<p>Figure shows the agent learns faster on <code class="language-plaintext highlighter-rouge">MultiDiscrete</code> spaces ⇒ RL agents can profit from <code class="language-plaintext highlighter-rouge">MultiDiscrete</code> compared to <code class="language-plaintext highlighter-rouge">Discrete</code>. (<code class="language-plaintext highlighter-rouge">CMD</code>).</p>
+
+<h2 id="atari-games">
+<a class="anchor" href="#atari-games" aria-hidden="true"><span class="octicon octicon-link"></span></a>Atari games</h2>
+
+<p>Atari games use <code class="language-plaintext highlighter-rouge">Discrete</code> spaces, which consists of only necessary actions to play the game (<strong>minimal, default in Gym</strong>). Authors add more actions: <strong>full</strong>, and <strong>multi-discrete,</strong> where joystick and fire-button are additional buttons with 9 and 2 options respectively.</p>
+
+<p><img src="Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2011.png" alt="Untitled"></p>
+
+<p>Figure 3 shows no clear difference, except:</p>
+
+<ul>
+  <li>
+<em>MsPacman</em>. <strong>multi-discrete</strong> achieved <strong>almost one-quarter</strong> higher score.</li>
+  <li>
+<em>Enduro</em>: <strong>minimal</strong> underperforms, despite the fact that the full space does not offer any new actions.</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">RA</code> can limit performance, but overall does not change results. Same thing applies to <code class="language-plaintext highlighter-rouge">CMD</code>.</p>
+
+<h2 id="vizdoom">
+<a class="anchor" href="#vizdoom" aria-hidden="true"><span class="octicon octicon-link"></span></a>VizDoom</h2>
+
+<p><strong>In increasing difficulty:</strong></p>
+
+<ul>
+  <li>Get-to-goal: Similar to earlier, except it is a first-person shooter scenario. +1 if reaches, 0 otherwise, include one minute of game-time timeout.</li>
+  <li>HGS: gather health kits to survive</li>
+  <li>Deathmatch: fight against randomly spawn enemies. +1 per kill, one shot.</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">RA</code> scenarios:</p>
+
+<ul>
+  <li>
+<strong>Bare-minimum</strong>: moving forward, turning left, attack (deathmatch).</li>
+  <li>
+<strong>Minimal</strong>: bare-minimum + turning right.</li>
+  <li>
+<strong>Backward:</strong> minimal + moving backward.</li>
+  <li>
+<strong>Strafe</strong>: backward + moving left and right.</li>
+</ul>
+
+<p>Five different spaces for each set:</p>
+
+<ul>
+  <li>Original <code class="language-plaintext highlighter-rouge">MultiDiscrete</code>
+</li>
+  <li>Three levels of <code class="language-plaintext highlighter-rouge">CMD</code>.</li>
+  <li>Continuous mouse control <code class="language-plaintext highlighter-rouge">DC</code>
+</li>
+</ul>
+
+<p>Observation: grayscale (Get-to-goal and HGS), RGB (Deathmatch) of size 80x60 + game variables.</p>
+
+<p><img src="Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2012.png" alt="Untitled"></p>
+
+<p><img src="Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2013.png" alt="Untitled"></p>
+
+<p><img src="Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2014.png" alt="Untitled"></p>
+
+<p>From figure, <code class="language-plaintext highlighter-rouge">MultiDiscrete</code> performs as well as discretized version (<code class="language-plaintext highlighter-rouge">CMD</code>). Continuous action prevents learning in most spaces (<code class="language-plaintext highlighter-rouge">DC</code>). Increasing the number of actions improves the results in difficult cases (<code class="language-plaintext highlighter-rouge">RA</code>).</p>
+
+<h2 id="obstacle-tower">
+<a class="anchor" href="#obstacle-tower" aria-hidden="true"><span class="octicon octicon-link"></span></a>Obstacle Tower</h2>
+
+<p>3D platform game with randomly generated levels. Original space is <code class="language-plaintext highlighter-rouge">MultiDiscrete</code> with options to move forward/backward and left/right, turn left/right and jump.</p>
+
+<p>To test <code class="language-plaintext highlighter-rouge">CMD</code> and <code class="language-plaintext highlighter-rouge">RA</code>, authors disabled strafing, moving backward or forcing moving forward.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Discrete</code> is obtained by creating all possible combinations of <code class="language-plaintext highlighter-rouge">MultiDiscrete</code>.</p>
+
+<p>Observation: 84x84 RGB image.</p>
+
+<p><img src="Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2015.png" alt="Untitled"></p>
+
+<p><img src="Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2016.png" alt="Untitled"></p>
+
+<p>From figure, no significant difference between two sets, except Backward action shows slower learning than the rest ⇒ Intuition to remove unnecessary actions.</p>
+
+<h2 id="starcraft-ii">
+<a class="anchor" href="#starcraft-ii" aria-hidden="true"><span class="octicon octicon-link"></span></a>Starcraft II</h2>
+
+<p>From figure <strong>Action masking</strong> is crucial in BM and CMAG. On BM, <code class="language-plaintext highlighter-rouge">RA</code> can lead to significant improvement.</p>
+
+<p><img src="Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2017.png" alt="Untitled"></p>
+
+<p><img src="Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2018.png" alt="Untitled"></p>
+
+<h1 id="conclusion">
+<a class="anchor" href="#conclusion" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conclusion</h1>
+
+<p>Removing actions <code class="language-plaintext highlighter-rouge">RA</code> can lower the overall performance (VizDoom) but can be an important step to <strong>make environments learnable</strong> (SC2, Obstacle Tower).</p>
+
+<p><strong>Continuous are harder to learn than discrete</strong> and can also prevent learning. Discretizing them <code class="language-plaintext highlighter-rouge">DC</code> improves performance notably.</p>
+
+<p>In Get-To-Goal, <code class="language-plaintext highlighter-rouge">MultiDiscrete</code> <strong>scales well with an increasing number of actions</strong>, while <code class="language-plaintext highlighter-rouge">Discrete</code> does not. There is no significant different in other environments.</p>
+
+<p>In short: use <code class="language-plaintext highlighter-rouge">MultiDiscrete</code> &gt; <code class="language-plaintext highlighter-rouge">Discrete</code> &gt; <code class="language-plaintext highlighter-rouge">Continuous</code>.</p>
+
+<blockquote>
+  <p>Start by removing all but the necessary actions and discretizing all continuous actions. <strong>Avoid turning multi-discrete actions into a single discrete action and limit the number of choices per discrete action</strong>. If the agent is able to learn, start adding removed actions for improved performance, if necessary.</p>
+</blockquote>
+
+<h1 id="acknowledgements">
+<a class="anchor" href="#acknowledgements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Acknowledgements</h1>
+<p>Thanks Anssi Kanervisto for reviewing this document.</p>
+
+  </div><a class="u-url" href="/blog/drl/2021/09/25/Action-space-shaping-in-Deep-Reinforcement-Learning.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
