@@ -35,7 +35,7 @@ Environments in this paper: toy environment, Atari, VizDoom, Starcraft II and Ob
 
 ![https://techcrunch.com/wp-content/uploads/2019/01/motionalpha.gif](https://techcrunch.com/wp-content/uploads/2019/01/motionalpha.gif)
 
-![https://miro.medium.com/max/1000/1*zkH1_KoHxQwr25thSJFUEQ.gif](https://miro.medium.com/max/1000/1*zkH1_KoHxQwr25thSJFUEQ.gif)
+![https://www.42.us.org/wp-content/uploads/2019/06/gradient_saliency_clip_optimized.gif](https://www.42.us.org/wp-content/uploads/2019/06/gradient_saliency_clip_optimized.gif)
 
 # Action space shaping
 
