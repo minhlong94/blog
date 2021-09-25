@@ -135,19 +135,19 @@ window.onload = wrap_img;
 
 <p>Probably hard for human to learn. Should we remove keys? If we remove keys so that it is still playable, <strong>should we also remove unnecessary actions</strong>?</p>
 
-<p><img src="/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled.png" alt="Untitled"></p>
+<p><img src="../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled.png" alt="Untitled"></p>
 
 <p>The question: do these transformations support the training of RL agents?</p>
 
 <p>Environments in this paper: toy environment, Atari, VizDoom, Starcraft II and Obstacle Tower.</p>
 
-<p><img src="/images/https://1.bp.blogspot.com/-zg-NUE2A7m4/YC6kZqA17EI/AAAAAAAAHL4/XGyOYcW-BzsZ3pRv88bu9SrM6_hixaVywCLcBGAsYHQ/s704/image6.gif" alt="https://1.bp.blogspot.com/-zg-NUE2A7m4/YC6kZqA17EI/AAAAAAAAHL4/XGyOYcW-BzsZ3pRv88bu9SrM6_hixaVywCLcBGAsYHQ/s704/image6.gif"></p>
+<p><img src="https://1.bp.blogspot.com/-zg-NUE2A7m4/YC6kZqA17EI/AAAAAAAAHL4/XGyOYcW-BzsZ3pRv88bu9SrM6_hixaVywCLcBGAsYHQ/s704/image6.gif" alt="https://1.bp.blogspot.com/-zg-NUE2A7m4/YC6kZqA17EI/AAAAAAAAHL4/XGyOYcW-BzsZ3pRv88bu9SrM6_hixaVywCLcBGAsYHQ/s704/image6.gif"></p>
 
-<p><img src="/images/https://raw.githubusercontent.com/glample/Arnold/master/docs/example.gif" alt="https://raw.githubusercontent.com/glample/Arnold/master/docs/example.gif"></p>
+<p><img src="https://raw.githubusercontent.com/glample/Arnold/master/docs/example.gif" alt="https://raw.githubusercontent.com/glample/Arnold/master/docs/example.gif"></p>
 
-<p><img src="/images/https://techcrunch.com/wp-content/uploads/2019/01/motionalpha.gif" alt="https://techcrunch.com/wp-content/uploads/2019/01/motionalpha.gif"></p>
+<p><img src="https://techcrunch.com/wp-content/uploads/2019/01/motionalpha.gif" alt="https://techcrunch.com/wp-content/uploads/2019/01/motionalpha.gif"></p>
 
-<p>![https://miro.medium.com/max/1000/1<em>zkH1_KoHxQwr25thSJFUEQ.gif](/images/https://miro.medium.com/max/1000/1</em>zkH1_KoHxQwr25thSJFUEQ.gif)</p>
+<p>![https://miro.medium.com/max/1000/1<em>zkH1_KoHxQwr25thSJFUEQ.gif](https://miro.medium.com/max/1000/1</em>zkH1_KoHxQwr25thSJFUEQ.gif)</p>
 
 <h1 id="action-space-shaping">
 <a class="anchor" href="#action-space-shaping" aria-hidden="true"><span class="octicon octicon-link"></span></a>Action space shaping</h1>
@@ -162,21 +162,21 @@ window.onload = wrap_img;
 <code class="language-plaintext highlighter-rouge">Discrete</code> . Each action is an integer $a \in {0, 1, …, N}$ where $n \in \mathbb{N}$ represents the number of possible actions.</li>
 </ul>
 
-<p><img src="/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%201.png" alt="Untitled"></p>
+<p><img src="../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%201.png" alt="Untitled"></p>
 
 <ul>
   <li>
 <code class="language-plaintext highlighter-rouge">MultiDiscrete</code> . An extension of <code class="language-plaintext highlighter-rouge">Discrete</code>. Action is a vector of individual discrete actions $a_i \in {0, 1, …, N_i}$, each with possibly different number of possibilities $N_i$. For example, a keyboard is a large <code class="language-plaintext highlighter-rouge">MultiDiscrete</code> space.</li>
 </ul>
 
-<p><img src="/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%202.png" alt="Untitled"></p>
+<p><img src="../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%202.png" alt="Untitled"></p>
 
 <ul>
   <li>
 <code class="language-plaintext highlighter-rouge">Continuous</code>. Action $a \in \mathbb{R}$ is a real number/vector.</li>
 </ul>
 
-<p><img src="/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%203.png" alt="Untitled"></p>
+<p><img src="../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%203.png" alt="Untitled"></p>
 
 <p>A set of keyboard buttons and mouse control can be represented as a combination of <code class="language-plaintext highlighter-rouge">MultiDiscrete</code> and <code class="language-plaintext highlighter-rouge">Continuous</code>.</p>
 
@@ -193,26 +193,26 @@ window.onload = wrap_img;
 </li>
 </ul>
 
-<p><img src="/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%204.png" alt="Untitled"></p>
+<p><img src="../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%204.png" alt="Untitled"></p>
 
 <ul>
   <li>
 <code class="language-plaintext highlighter-rouge">DC</code>: Discretize continuous actions. Mouse movement or camera turning speed are often discretized by splitting them into a set of bins, or defining as discrete choices: negative, zero, positive. <strong>This turning rate is a hyperparameter</strong>. If the rate is too high, actions are not fine-grained, so the agents may have difficulties in aiming at a specific spot.</li>
 </ul>
 
-<p><img src="/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%205.png" alt="Untitled"></p>
+<p><img src="../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%205.png" alt="Untitled"></p>
 
 <ul>
   <li>
 <code class="language-plaintext highlighter-rouge">CMD</code> : Convert <code class="language-plaintext highlighter-rouge">MultiDiscrete</code> to <code class="language-plaintext highlighter-rouge">Discrete</code>. Assumption: it is easier to learn a single large policy than multiple small policies. For example Q-Learning only works for <code class="language-plaintext highlighter-rouge">Discrete</code> actions.</li>
 </ul>
 
-<p><img src="/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%206.png" alt="Untitled"></p>
+<p><img src="../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%206.png" alt="Untitled"></p>
 
 <h1 id="action-spaces-of-other-games">
 <a class="anchor" href="#action-spaces-of-other-games" aria-hidden="true"><span class="octicon octicon-link"></span></a>Action spaces of other games</h1>
 
-<p><img src="/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%207.png" alt="Untitled"></p>
+<p><img src="../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%207.png" alt="Untitled"></p>
 
 <h1 id="experiments">
 <a class="anchor" href="#experiments" aria-hidden="true"><span class="octicon octicon-link"></span></a>Experiments</h1>
@@ -243,21 +243,21 @@ window.onload = wrap_img;
 
 <p>Authors also add <strong>bogus</strong> action (actions that do nothing), and <strong>backward</strong> and <strong>strafe</strong> actions.</p>
 
-<p><img src="/images/https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Circlestrafing_animation.gif/250px-Circlestrafing_animation.gif" alt="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Circlestrafing_animation.gif/250px-Circlestrafing_animation.gif"></p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Circlestrafing_animation.gif/250px-Circlestrafing_animation.gif" alt="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Circlestrafing_animation.gif/250px-Circlestrafing_animation.gif"></p>
 
 <p>Strafe action. Camera of blue is locked towards red.</p>
 
 <p>To study <code class="language-plaintext highlighter-rouge">RA</code> and <code class="language-plaintext highlighter-rouge">CMD</code>, the authors add and/or remove additional actions.</p>
 
-<p><img src="/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%208.png" alt="Untitled"></p>
+<p><img src="../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%208.png" alt="Untitled"></p>
 
-<p><img src="/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%209.png" alt="Untitled"></p>
+<p><img src="../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%209.png" alt="Untitled"></p>
 
 <p>Figure (left): Tank-like control is slower than non-tank. <code class="language-plaintext highlighter-rouge">Continuous</code> is <strong>slowest</strong>. With rllib, <strong>observed similar results</strong>, except <code class="language-plaintext highlighter-rouge">Continuous</code> learned faster than tank-like ⇒ <code class="language-plaintext highlighter-rouge">Continuous</code> are <strong>sensitive</strong> to the implementation.</p>
 
 <p>Figure (right) with and without additional actions ⇒ Agent <strong>learns slower the more actions they have</strong> (<code class="language-plaintext highlighter-rouge">RA</code>).</p>
 
-<p><img src="/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2010.png" alt="Untitled"></p>
+<p><img src="../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2010.png" alt="Untitled"></p>
 
 <p>Figure shows the agent learns faster on <code class="language-plaintext highlighter-rouge">MultiDiscrete</code> spaces ⇒ RL agents can profit from <code class="language-plaintext highlighter-rouge">MultiDiscrete</code> compared to <code class="language-plaintext highlighter-rouge">Discrete</code>. (<code class="language-plaintext highlighter-rouge">CMD</code>).</p>
 
@@ -266,7 +266,7 @@ window.onload = wrap_img;
 
 <p>Atari games use <code class="language-plaintext highlighter-rouge">Discrete</code> spaces, which consists of only necessary actions to play the game (<strong>minimal, default in Gym</strong>). Authors add more actions: <strong>full</strong>, and <strong>multi-discrete,</strong> where joystick and fire-button are additional buttons with 9 and 2 options respectively.</p>
 
-<p><img src="/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2011.png" alt="Untitled"></p>
+<p><img src="../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2011.png" alt="Untitled"></p>
 
 <p>Figure 3 shows no clear difference, except:</p>
 
@@ -315,11 +315,11 @@ window.onload = wrap_img;
 
 <p>Observation: grayscale (Get-to-goal and HGS), RGB (Deathmatch) of size 80x60 + game variables.</p>
 
-<p><img src="/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2012.png" alt="Untitled"></p>
+<p><img src="../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2012.png" alt="Untitled"></p>
 
-<p><img src="/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2013.png" alt="Untitled"></p>
+<p><img src="../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2013.png" alt="Untitled"></p>
 
-<p><img src="/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2014.png" alt="Untitled"></p>
+<p><img src="../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2014.png" alt="Untitled"></p>
 
 <p>From figure, <code class="language-plaintext highlighter-rouge">MultiDiscrete</code> performs as well as discretized version (<code class="language-plaintext highlighter-rouge">CMD</code>). Continuous action prevents learning in most spaces (<code class="language-plaintext highlighter-rouge">DC</code>). Increasing the number of actions improves the results in difficult cases (<code class="language-plaintext highlighter-rouge">RA</code>).</p>
 
@@ -334,9 +334,9 @@ window.onload = wrap_img;
 
 <p>Observation: 84x84 RGB image.</p>
 
-<p><img src="/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2015.png" alt="Untitled"></p>
+<p><img src="../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2015.png" alt="Untitled"></p>
 
-<p><img src="/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2016.png" alt="Untitled"></p>
+<p><img src="../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2016.png" alt="Untitled"></p>
 
 <p>From figure, no significant difference between two sets, except Backward action shows slower learning than the rest ⇒ Intuition to remove unnecessary actions.</p>
 
@@ -345,9 +345,9 @@ window.onload = wrap_img;
 
 <p>From figure <strong>Action masking</strong> is crucial in BM and CMAG. On BM, <code class="language-plaintext highlighter-rouge">RA</code> can lead to significant improvement.</p>
 
-<p><img src="/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2017.png" alt="Untitled"></p>
+<p><img src="../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2017.png" alt="Untitled"></p>
 
-<p><img src="/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2018.png" alt="Untitled"></p>
+<p><img src="../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2018.png" alt="Untitled"></p>
 
 <h1 id="conclusion">
 <a class="anchor" href="#conclusion" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conclusion</h1>
