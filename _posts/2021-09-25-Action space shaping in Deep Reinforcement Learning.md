@@ -23,19 +23,19 @@ Take a game that uses keyboard and mouse:
 
 Probably hard for human to learn. Should we remove keys? If we remove keys so that it is still playable, **should we also remove unnecessary actions**?
 
-![Untitled](/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled.png)
+![Untitled](../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled.png)
 
 The question: do these transformations support the training of RL agents?
 
 Environments in this paper: toy environment, Atari, VizDoom, Starcraft II and Obstacle Tower.
 
-![https://1.bp.blogspot.com/-zg-NUE2A7m4/YC6kZqA17EI/AAAAAAAAHL4/XGyOYcW-BzsZ3pRv88bu9SrM6_hixaVywCLcBGAsYHQ/s704/image6.gif](/images/https://1.bp.blogspot.com/-zg-NUE2A7m4/YC6kZqA17EI/AAAAAAAAHL4/XGyOYcW-BzsZ3pRv88bu9SrM6_hixaVywCLcBGAsYHQ/s704/image6.gif)
+![https://1.bp.blogspot.com/-zg-NUE2A7m4/YC6kZqA17EI/AAAAAAAAHL4/XGyOYcW-BzsZ3pRv88bu9SrM6_hixaVywCLcBGAsYHQ/s704/image6.gif](https://1.bp.blogspot.com/-zg-NUE2A7m4/YC6kZqA17EI/AAAAAAAAHL4/XGyOYcW-BzsZ3pRv88bu9SrM6_hixaVywCLcBGAsYHQ/s704/image6.gif)
 
-![https://raw.githubusercontent.com/glample/Arnold/master/docs/example.gif](/images/https://raw.githubusercontent.com/glample/Arnold/master/docs/example.gif)
+![https://raw.githubusercontent.com/glample/Arnold/master/docs/example.gif](https://raw.githubusercontent.com/glample/Arnold/master/docs/example.gif)
 
-![https://techcrunch.com/wp-content/uploads/2019/01/motionalpha.gif](/images/https://techcrunch.com/wp-content/uploads/2019/01/motionalpha.gif)
+![https://techcrunch.com/wp-content/uploads/2019/01/motionalpha.gif](https://techcrunch.com/wp-content/uploads/2019/01/motionalpha.gif)
 
-![https://miro.medium.com/max/1000/1*zkH1_KoHxQwr25thSJFUEQ.gif](/images/https://miro.medium.com/max/1000/1*zkH1_KoHxQwr25thSJFUEQ.gif)
+![https://miro.medium.com/max/1000/1*zkH1_KoHxQwr25thSJFUEQ.gif](https://miro.medium.com/max/1000/1*zkH1_KoHxQwr25thSJFUEQ.gif)
 
 # Action space shaping
 
@@ -45,15 +45,15 @@ There are three common types of actions, established by OpenAI Gym:
 
 - `Discrete` . Each action is an integer $a \in \{0, 1, ..., N\}$ where $n \in \mathbb{N}$ represents the number of possible actions.
 
-![Untitled](/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%201.png)
+![Untitled](../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%201.png)
 
 - `MultiDiscrete` . An extension of `Discrete`. Action is a vector of individual discrete actions $a_i \in \{0, 1, ..., N_i\}$, each with possibly different number of possibilities $N_i$. For example, a keyboard is a large `MultiDiscrete` space.
 
-![Untitled](/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%202.png)
+![Untitled](../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%202.png)
 
 - `Continuous`. Action $a \in \mathbb{R}$ is a real number/vector.
 
-![Untitled](/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%203.png)
+![Untitled](../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%203.png)
 
 A set of keyboard buttons and mouse control can be represented as a combination of `MultiDiscrete` and `Continuous`.
 
@@ -65,19 +65,19 @@ There are three major categories of action space transformation:
 
 - `RA`: Remove actions. For example, "Sneak" in Minecraft is not crucial for the game progress ⇒ often removed. `RA` **helps with exploration** since there are less actions to try. However, this **requires domain knowledge**, and **may restrict agent's capabilities.**
 
-![Untitled](/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%204.png)
+![Untitled](../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%204.png)
 
 - `DC`: Discretize continuous actions. Mouse movement or camera turning speed are often discretized by splitting them into a set of bins, or defining as discrete choices: negative, zero, positive. **This turning rate is a hyperparameter**. If the rate is too high, actions are not fine-grained, so the agents may have difficulties in aiming at a specific spot.
 
-![Untitled](/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%205.png)
+![Untitled](../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%205.png)
 
 - `CMD` : Convert `MultiDiscrete` to `Discrete`. Assumption: it is easier to learn a single large policy than multiple small policies. For example Q-Learning only works for `Discrete` actions.
 
-![Untitled](/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%206.png)
+![Untitled](../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%206.png)
 
 # Action spaces of other games
 
-![Untitled](/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%207.png)
+![Untitled](../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%207.png)
 
 # Experiments
 
@@ -100,21 +100,21 @@ A simple reach-the-goal env: player and goal start at a random environment. Play
 
 Authors also add **bogus** action (actions that do nothing), and **backward** and **strafe** actions.
 
-![https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Circlestrafing_animation.gif/250px-Circlestrafing_animation.gif](/images/https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Circlestrafing_animation.gif/250px-Circlestrafing_animation.gif)
+![https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Circlestrafing_animation.gif/250px-Circlestrafing_animation.gif](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Circlestrafing_animation.gif/250px-Circlestrafing_animation.gif)
 
 Strafe action. Camera of blue is locked towards red.
 
 To study `RA` and `CMD`, the authors add and/or remove additional actions.
 
-![Untitled](/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%208.png)
+![Untitled](../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%208.png)
 
-![Untitled](/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%209.png)
+![Untitled](../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%209.png)
 
 Figure (left): Tank-like control is slower than non-tank. `Continuous` is **slowest**. With rllib, **observed similar results**, except `Continuous` learned faster than tank-like ⇒ `Continuous` are **sensitive** to the implementation.
 
 Figure (right) with and without additional actions ⇒ Agent **learns slower the more actions they have** (`RA`). 
 
-![Untitled](/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2010.png)
+![Untitled](../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2010.png)
 
 Figure shows the agent learns faster on `MultiDiscrete` spaces ⇒ RL agents can profit from `MultiDiscrete` compared to `Discrete`. (`CMD`).
 
@@ -122,7 +122,7 @@ Figure shows the agent learns faster on `MultiDiscrete` spaces ⇒ RL agents can
 
 Atari games use `Discrete` spaces, which consists of only necessary actions to play the game (**minimal, default in Gym**). Authors add more actions: **full**, and **multi-discrete,** where joystick and fire-button are additional buttons with 9 and 2 options respectively.
 
-![Untitled](/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2011.png)
+![Untitled](../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2011.png)
 
 Figure 3 shows no clear difference, except:
 
@@ -154,11 +154,11 @@ Five different spaces for each set:
 
 Observation: grayscale (Get-to-goal and HGS), RGB (Deathmatch) of size 80x60 + game variables.
 
-![Untitled](/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2012.png)
+![Untitled](../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2012.png)
 
-![Untitled](/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2013.png)
+![Untitled](../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2013.png)
 
-![Untitled](/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2014.png)
+![Untitled](../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2014.png)
 
 From figure, `MultiDiscrete` performs as well as discretized version (`CMD`). Continuous action prevents learning in most spaces (`DC`). Increasing the number of actions improves the results in difficult cases (`RA`).
 
@@ -172,9 +172,9 @@ To test `CMD` and `RA`, authors disabled strafing, moving backward or forcing mo
 
 Observation: 84x84 RGB image.
 
-![Untitled](/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2015.png)
+![Untitled](../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2015.png)
 
-![Untitled](/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2016.png)
+![Untitled](../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2016.png)
 
 From figure, no significant difference between two sets, except Backward action shows slower learning than the rest ⇒ Intuition to remove unnecessary actions.
 
@@ -182,9 +182,9 @@ From figure, no significant difference between two sets, except Backward action 
 
 From figure **Action masking** is crucial in BM and CMAG. On BM, `RA` can lead to significant improvement.
 
-![Untitled](/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2017.png)
+![Untitled](../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2017.png)
 
-![Untitled](/images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2018.png)
+![Untitled](../images/Action%20space%20shaping%20in%20Deep%20Reinforcement%20Learnin%20663f85ebb6494948bb950170c38f01a7/Untitled%2018.png)
 
 # Conclusion
 

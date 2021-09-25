@@ -12,7 +12,7 @@ Author: Long M. Luu, contact: minhlong9413@gmail.com or Discord AerysS#5558.
 
 "Your ResNet, batchnorm, and very deep networks don't work here." - Andrej Karpathy
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled.png)
 
 # References
 
@@ -33,6 +33,8 @@ All codebases are released. Just use CatalyzeX.
 [An Empirical Model of Large-Batch Training](https://arxiv.org/abs/1812.06162)
 
 [Deep Reinforcement Learning at the Edge of the Statistical Precipice](https://arxiv.org/abs/2108.13264)
+
+[Revisiting the Monotonicity Constraint in Cooperative Multi-Agent Reinforcement Learning](https://arxiv.org/abs/2102.03479)
 
 [http://joschu.net/docs/nuts-and-bolts.pdf](http://joschu.net/docs/nuts-and-bolts.pdf)
 
@@ -58,7 +60,7 @@ Agarwal et al., 2021
 
 Consider two algorithms below. The name of the algorithm is not important. The mean and 95% confidence interval are averaged over **5 seeds**. Our concern: is algorithm 1 better than 2?
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%202.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%202.png)
 
 The measure of performance: the average cumulated reward over last 100 evaluation episodes. It seems like Algo 1 is better than Algo 2.
 
@@ -108,7 +110,7 @@ A difference is called significant at level $\alpha$ when $p$-value < $\alpha$ i
 
 ## Statistical testing
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%203.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%203.png)
 
 Type-I error: false positive. **Rejects $H_0$ when it is true.**
 
@@ -129,13 +131,13 @@ in RL.
 
 We then compute the $t$-statistic and the degree of freedom $\nu$ using the following equations:
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%204.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%204.png)
 
 where $x_{\text{diff}} = x_1 - x_2$; $s_1, s_2$ is the empirical standard deviations of the two samples and $N_1, N_2$ are their sizes (which we assume $N_1 = N_2 = N$).
 
 A figure to make sense of these concepts:
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%205.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%205.png)
 
 $H_0$ assumes $\mu_{\text{diff}} = 0$, so the distribution is centered on 0. $H_a$ assumes a positive difference $\mu_{\text{diff}} = \epsilon$, so the distribution is shifted by the t-value corresponding to $\epsilon$, $t_\epsilon$. We consider the one-tail case, and test for the positive difference.
 
@@ -190,7 +192,7 @@ Additional result from Islam et al., 2017 paper:
 
 In this figure, HalfCheetah has stable dynamics. Hopper does not have stable dynamics. **Swimmer has a local optima.**
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2012.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2012.png)
 
 [https://www.youtube.com/watch?v=lKpUQYjgm80](https://www.youtube.com/watch?v=lKpUQYjgm80)
 
@@ -210,9 +212,9 @@ Consider:
 - Set 1: **TRPO** from TRPO codebase (Schulman 2015), from PPO codebase(Schulman 2017), and rllib Tensorflow (Duan 2016) codebases.
 - Set 2: **DDPG** rllab Theano (Duan 2016), rllabplusplus (Gu 2016), OpenAI Baselines (Plapper 2017).
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2013.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2013.png)
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2014.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2014.png)
 
 # Implementation Matters in Deep RL (Engstorm et al., 2020 paper)
 
@@ -233,23 +235,23 @@ $$L^V = \max \left[ (V_{\theta_t} - V_{targ})^2, (clip(V_{\theta_t}, V_{\theta_{
 7. Hyperbolic tan (tanh) activations.
 8. Global gradient clipping: global $\ell_2$-norm less than 0.5.
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2015.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2015.png)
 
 The authors then consider a PPO-M (minimal) variant, that **does not use** these optimization tricks, alongside PPO and TRPO, and the TRPO+ variant that uses PPO tricks.
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2016.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2016.png)
 
 ## Results comparing 4 algorithms
 
 Define:
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2017.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2017.png)
 
 AAI measures the **maximal effect of switching algorithms**, and ACLI measures the **maximal effect of adding tricks.**
 
 We have:
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2018.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2018.png)
 
 # How to tune hyperparameters?
 
@@ -261,69 +263,42 @@ From Henderson et al., 2017 paper:
 
 Investigate three common architectures: (64, 64), (100, 50, 25) and (400, 30), activation: tanh, ReLU, Leaky ReLU.
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2019.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2019.png)
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2020.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2020.png)
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2021.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2021.png)
 
 From Islam et al., 2017 paper: (purpose: to **reproduce** results)
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2022.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2022.png)
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2023.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2023.png)
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2024.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2024.png)
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2025.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2025.png)
 
 ### Batch Size
 
 From Islam et al., 2017 paper
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2026.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2026.png)
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2027.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2027.png)
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2028.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2028.png)
 
 ### Findings from Andrychowicz et al., 2021 paper
 
 Train **250k agents** in 5 continuous control environments. Each choice is run for 3 random seeds, but the reported results are based on the performance of hundreds of runs.
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2029.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2029.png)
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2030.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2030.png)
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2031.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2031.png)
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2032.png)
-
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2033.png)
-
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2034.png)
-
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2035.png)
-
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2036.png)
-
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2037.png)
-
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2038.png)
-
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2039.png)
-
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2040.png)
-
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2041.png)
-
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2042.png)
-
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2043.png)
-
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2044.png)
-
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2045.png)
 
 # Suggested method to compare algorithms
 
@@ -362,7 +337,7 @@ p_value = t_test(alg1_performance, alg2_performance)
 
 > In general, however, the most important step to reproducibility is to **report all** hyperparameters, implementation details, experimental setup, and evaluation methods for both baseline comparison methods and novel work. Without the publication of implementations and related details, wasted effort on reproducing state-of-the-art works will plague the community and slow down progress.
 
-![Untitled](/images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2046.png)
+![Untitled](../images/Making%20your%20Deep%20RL%20matters%20c01bfd91a2dc4cef8c405348e5a7d7dc/Untitled%2046.png)
 
 > Overall, our results highlight the necessity of designing deep RL methods in a modular manner. When building algorithms, we should understand precisely how each component impacts agent training—both in terms of overall performance and underlying algorithmic behavior. It is impossible to properly attribute successes and failures in the  complicated systems that make up deep RL methods without such diligence. More broadly, our findings suggest that developing an RL toolkit will require moving beyond the current **benchmark-driven** evaluation model to a more fine-grained understanding of deep RL methods.
 
