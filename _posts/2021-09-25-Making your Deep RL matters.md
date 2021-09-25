@@ -1,5 +1,6 @@
 ---
 toc: true
+use_math: true
 layout: post
 description: A collection of related topics about code-level optimization tricks in DRL, which dramatically changes the results.
 categories: [DRL]
