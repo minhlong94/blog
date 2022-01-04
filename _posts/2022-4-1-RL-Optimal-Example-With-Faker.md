@@ -1,4 +1,3 @@
-# 
 ---
 toc: true
 use_math: true

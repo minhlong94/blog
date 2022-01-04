@@ -3,7 +3,8 @@ layout: page
 title: About Me
 permalink: /about/
 ---
-My name is Luu Minh Long (surname Luu, name Long). I am a CS undergrad student in Vietnam. Currently I am working as a Data Engineer (internship). In my free time, I participate in [Kaggle competitions](https://www.kaggle.com/aeryss), and do ML research.
+My name is Luu Minh Long (surname Luu, name Long). I am a CS undergrad student in Vietnam. Currently, I am working as a Data Engineer. 
+In my free time, I participate in [Kaggle competitions](https://www.kaggle.com/aeryss), and do ML research.
 
 # CV & Contact information
 - CV: [Google Docs](https://docs.google.com/document/d/1NBvMsWc0g80BqiL3yFJuB1mw9iaalSZ7Rjdk6yyuuZk)
