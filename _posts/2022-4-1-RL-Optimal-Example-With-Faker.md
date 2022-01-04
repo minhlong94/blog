@@ -1,4 +1,12 @@
-# You should not treat RL as a black box: an example using League of Legends
+# 
+---
+toc: true
+use_math: true
+layout: post
+description: An example using LoL to explain to a friend about black box in RL
+categories: [DRL, shitpost]
+title: You should not treat RL as a black box: an example using League of Legends
+---
 
 Recently I tried to explain a struggle in a project to a friend, who had zero knowledge 
 in Reinforcement Learning, that was: my friend set up a suitable action space for an agent to choose to "neglect" a chest in a gridworld, and she thought: "if the agent is smart enough, it should learn how to neglect these chests if necessary." The key word here is "if necessary": she did **not** know what cases should be considered "necessary". In short, she did not know the optimal policy and under what conditions would make the policy optimal. Say, for example, if you have 10 steps left in the gridworld, and you can both get the chest and the goal in 10 steps, why should you neglect the chest, assume that it gives bonus reward and the number of steps left does not contribute to the reward? Transfer to our problem, in this case, she wonders why the agent does not neglect the chest (expectation), but she does not know how many steps are left, and where is the agent on the gridworld (reality).
