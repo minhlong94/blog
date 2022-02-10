@@ -4,19 +4,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>You should not treat RL as a black box: an example using League of Legends | fastpages</title>
+<title>Ways to sync your code from PyCharm to a remote Linux server | fastpages</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="You should not treat RL as a black box: an example using League of Legends" />
+<meta property="og:title" content="Ways to sync your code from PyCharm to a remote Linux server" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="An example using LoL to explain to a friend about black box in RL" />
-<meta property="og:description" content="An example using LoL to explain to a friend about black box in RL" />
-<link rel="canonical" href="https://minhlong94.github.io/blog/drl/shitpost/2022/01/04/RL-Optimal-Example-With-Faker.html" />
-<meta property="og:url" content="https://minhlong94.github.io/blog/drl/shitpost/2022/01/04/RL-Optimal-Example-With-Faker.html" />
+<meta name="description" content="No wording, stright to the problem" />
+<meta property="og:description" content="No wording, stright to the problem" />
+<link rel="canonical" href="https://minhlong94.github.io/blog/tricks/2022/02/10/Pycharm-and-Linux-server.html" />
+<meta property="og:url" content="https://minhlong94.github.io/blog/tricks/2022/02/10/Pycharm-and-Linux-server.html" />
 <meta property="og:site_name" content="fastpages" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-01-04T00:00:00-06:00" />
+<meta property="article:published_time" content="2022-02-10T00:00:00-06:00" />
 <script type="application/ld+json">
-{"datePublished":"2022-01-04T00:00:00-06:00","url":"https://minhlong94.github.io/blog/drl/shitpost/2022/01/04/RL-Optimal-Example-With-Faker.html","@type":"BlogPosting","dateModified":"2022-01-04T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://minhlong94.github.io/blog/drl/shitpost/2022/01/04/RL-Optimal-Example-With-Faker.html"},"headline":"You should not treat RL as a black box: an example using League of Legends","description":"An example using LoL to explain to a friend about black box in RL","@context":"https://schema.org"}</script>
+{"datePublished":"2022-02-10T00:00:00-06:00","url":"https://minhlong94.github.io/blog/tricks/2022/02/10/Pycharm-and-Linux-server.html","@type":"BlogPosting","dateModified":"2022-02-10T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://minhlong94.github.io/blog/tricks/2022/02/10/Pycharm-and-Linux-server.html"},"headline":"Ways to sync your code from PyCharm to a remote Linux server","description":"No wording, stright to the problem","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://minhlong94.github.io/blog/feed.xml" title="fastpages" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -87,23 +87,20 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">You should not treat RL as a black box: an example using League of Legends</h1><p class="page-description">An example using LoL to explain to a friend about black box in RL</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-01-04T00:00:00-06:00" itemprop="datePublished">
-        Jan 4, 2022
+    <h1 class="post-title p-name" itemprop="name headline">Ways to sync your code from PyCharm to a remote Linux server</h1><p class="page-description">No wording, stright to the problem</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-02-10T00:00:00-06:00" itemprop="datePublished">
+        Feb 10, 2022
       </time>
        • <span class="read-time" title="Estimated read time">
     
     
-      3 min read
+      1 min read
     
 </span></p>
 
     
       <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
       
-        <a class="category-tags-link" href="/blog/categories/#DRL">DRL</a>
-        &nbsp;
-      
-        <a class="category-tags-link" href="/blog/categories/#shitpost">shitpost</a>
+        <a class="category-tags-link" href="/blog/categories/#tricks">tricks</a>
         
       
       </p>
@@ -113,24 +110,50 @@ window.onload = wrap_img;
 
   <div class="post-content e-content" itemprop="articleBody">
     <ul class="section-nav">
-</ul><p>Recently I tried to explain a struggle in a project to a friend, who had zero knowledge 
-in Reinforcement Learning, that was: my friend set up a suitable action space for an agent to choose to “neglect” a chest in a gridworld, and she thought: “if the agent is smart enough, it should learn how to neglect these chests if necessary.” The key word here is “if necessary”: she did <strong>not</strong> know what cases should be considered “necessary”. In short, she did not know the optimal policy and under what conditions would make the policy optimal. Say, for example, if you have 10 steps left in the gridworld, and you can both get the chest and the goal in 10 steps, why should you neglect the chest, assume that it gives bonus reward and the number of steps left does not contribute to the reward? Transfer to our problem, in this case, she wonders why the agent does not neglect the chest (expectation), but she does not know how many steps are left, and where is the agent on the gridworld (reality).</p>
+<li class="toc-entry toc-h1"><a href="#introduction">Introduction</a></li>
+<li class="toc-entry toc-h1"><a href="#use-pycharms-deployment">Use PyCharm’s Deployment</a></li>
+<li class="toc-entry toc-h1"><a href="#use-github">Use GitHub</a></li>
+<li class="toc-entry toc-h1"><a href="#use-jetbrains-gateway">Use JetBrains Gateway</a></li>
+</ul><h1 id="introduction">
+<a class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h1>
+<p>I am not a fan of long wording so let’s jump straight into the problem.</p>
 
-<p>Now the thing is, how should I explain this struggle to a friend <em>who has zero knowledge in RL</em>. He does not know everything RL: the definitions of states, actions, rewards, optimal policies, etc. Actually, it is easier to give the <a href="https://openai.com/blog/faulty-reward-functions/">OpenAI blog post about faulty reward functions</a>, and tells that the struggle is similar to this, but I do not think it is a good explanation: it is still very abstract. Saying that your problem B is similar to problem A does not clearly explain B. I need a better example.</p>
+<p>Have: a PyCharm project, a remote Linux server (SSH)</p>
 
-<p>Luckily, simple explanation is one of my specializations. We both play League of Legends, and we all know the famous <a href="https://www.youtube.com/watch?v=ZPCfoCVCx3U">Faker’s Zed vs Ryu’s Zed</a> highlight. This move is widely considered to be the most mind-blowing moment in LoL history, even up to now (so if you don’t understand what happened, don’t worry I don’t too). One of the factors that helped Faker to do this highlight was he was facing Ryu - a top player in a professional match, and he was in a bad situation: it was hard, thus these actions were necessary to survive.</p>
+<p>Want: sync the project to Linux</p>
 
-<p>Now, instead of the above situation, consider that a player who plays Zed now faces with a champion who <strong>cannot</strong> resist and has weak defense. Moreover, assume that this Zed has a lot of items that he can kill the champion almost instantly. In this case, is Faker’s talent level necessary? Do you need to perform complex combo? From my point of view and my friends’, we all agree that although it sounds badass, it is not necessary to be Faker to kill that champion.</p>
+<p>There are three ways I know of. Let’s go straight to the one I recommend and you can read the rest later.</p>
 
-<p>We then go back to the “if necessary” case: if the situation is simple like the example I just mentioned, the agent does not have to “neglect” the chest - it can simply get both. However, if the situation is like Faker vs Ryu, then Faker’s talent level is necessary. In my friend’s case, she did <strong>not</strong> know the situation, and she has been wondering about why the agent does not behave as expected for weeks. My answer is simple: “what actions are expected, and why they are expected?”. Sadly, she refuses to listen, so the project has been in that loop ever since.</p>
+<h1 id="use-pycharms-deployment">
+<a class="anchor" href="#use-pycharms-deployment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use PyCharm’s Deployment</h1>
+<p>At the time of writing, I am using PyCharm Pro version 2021.2.3. I am not sure if this function is available in other versions.
+The tutorial is adapted from: https://blog.csdn.net/zhaihaifei/article/details/53691873</p>
 
-<p>From this experience, I think that not knowing a good policy in RL is a dangerous thing: you do not know how good the agent is right now, which can make your evaluation bias. No, randomness is not a solid baseline, especially if the environment requires a sequence of steps. Before diving into RL, make sure you know these things so the bug will be a lot easier to detect. Finally, I would like to insert a message from user <code class="language-plaintext highlighter-rouge">hackeronsteriod</code>, who works with AI at Google:</p>
-<blockquote>
-  <p>Also, I would suggest not treating RL like a black box.  You should have an idea of what a good policy is in your environment, what actions you expect it to do, what reward you expect it to achieve, etc. That will be more reliable to tell if you actually have converged to a good policy.</p>
-</blockquote>
+<ol>
+  <li>Select <code class="language-plaintext highlighter-rouge">Tools =&gt; Deployment =&gt; Configuration</code>
+</li>
+  <li>Press the <code class="language-plaintext highlighter-rouge">+</code> icon to add new Deployment.</li>
+  <li>Choose <code class="language-plaintext highlighter-rouge">SFTF</code>. (I don’t know what this is though)</li>
+  <li>Choose a name for your deployment. Any name.</li>
+  <li>Select the three dots thing on the right hand side of the <code class="language-plaintext highlighter-rouge">SSH Configuration</code> tab.</li>
+  <li>Click the <code class="language-plaintext highlighter-rouge">+</code> icon to add new SSH configuration. Then input your host, username and password there. The SSH is usually given in the format <code class="language-plaintext highlighter-rouge">username@host</code>. Remember to test connection. Then select <code class="language-plaintext highlighter-rouge">OK</code> to apply the connection.</li>
+  <li>In the currently opening window, select <code class="language-plaintext highlighter-rouge">Mapping</code> on the top middle, then change the <code class="language-plaintext highlighter-rouge">Deployment path</code> to the path you want to upload. The path will be <code class="language-plaintext highlighter-rouge">cd</code>-ed to. The deployment will behave as follows: Server login =&gt; <code class="language-plaintext highlighter-rouge">cd</code> to this path =&gt; Sync code.</li>
+  <li>Click <code class="language-plaintext highlighter-rouge">OK</code> to close the window.</li>
+  <li>(Optional) To sync the code on <code class="language-plaintext highlighter-rouge">Ctrl+S</code> click, go to <code class="language-plaintext highlighter-rouge">Tools =&gt; Options =&gt; Upload changed files to...</code>. Select this as <code class="language-plaintext highlighter-rouge">On explicit save action (Ctrl+S)</code>.</li>
+  <li>On the Project tree on the right hand side of PyCharm, click the whole project’s folder (or just the folder/file you want), then select <code class="language-plaintext highlighter-rouge">Tools =&gt; Deployment =&gt; Upload to &lt;yourServerName&gt;</code>. The code will be uploaded to the server.</li>
+</ol>
 
+<p>And that’s it for this method. Fastest to configure in my opinion.</p>
 
-  </div><a class="u-url" href="/blog/drl/shitpost/2022/01/04/RL-Optimal-Example-With-Faker.html" hidden></a>
+<h1 id="use-github">
+<a class="anchor" href="#use-github" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use GitHub</h1>
+<p>I do not recommend this method. The method is to upload the project to GitHub, clone it to the server then <code class="language-plaintext highlighter-rouge">git pull</code> every time the code is updated. It is the easiest but will consume a lot of your time.</p>
+
+<h1 id="use-jetbrains-gateway">
+<a class="anchor" href="#use-jetbrains-gateway" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use JetBrains Gateway</h1>
+<p>Link: https://www.jetbrains.com/help/pycharm/remote-development-a.html. Depends on you. Method #1 is sufficient to me.</p>
+
+  </div><a class="u-url" href="/blog/tricks/2022/02/10/Pycharm-and-Linux-server.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
