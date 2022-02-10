@@ -4,7 +4,7 @@ use_math: true
 layout: post
 description: An example using LoL to explain to a friend about black box in RL
 categories: [DRL, shitpost]
-title: You should not treat RL as a black box - an example using League of Legends
+title: "You should not treat RL as a black box: an example using League of Legends"
 ---
 
 Recently I tried to explain a struggle in a project to a friend, who had zero knowledge 
